@@ -1,0 +1,51 @@
+---
+title: "Titanic First Try"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library (tidymodels)
+library(skimr)
+library(corrplot)
+library(gpairs)
+
+ 
+ 
+raw_test_data <- read_csv("test.csv")
+raw_training_data <- read_csv("train.csv")
+
+
+```
+```{r}
+glimpse(raw_training_data)
+```
+```{r}
+summary(raw_training_data)
+```
+```{r}
+str(raw_training_data)
+```
+```{r}
+processed_training <- raw_training_data %>% as_tibble()
+```
+```{r}
+processed_training$Pclass <- as_factor(processed_training$Pclass)
+```
+
+```{r}
+glimpse(processed_training$Pclass)
+```
+
+```{r}
+processed_training %>% mutate(across(c(Pclass, Sex, Embarked), as_factor)) %>% select(-c(PassengerId, Survived, Cabin, Name))
+```
+
+```{r}
+
+```
+
